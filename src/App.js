@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { routesHome } from "./routes/routes";
+import HomeTemplate from "./templates/HomeTemplate";
+import PageNotFound from "./pages/PageNotFound";
+
+const showMenusHome = routes => {
+  if (routes && routes.length > 0) {
+    return routes.map((item, index) => {
+      return (
+        <HomeTemplate
+          key={index}
+          path={item.path}
+          exact={item.exact}
+          Component={item.component}
+        />
+      );
+    });
+  }
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Fragment>
+        <Switch>
+          {showMenusHome(routesHome)}
+          <Route path="" exact={false} component={PageNotFound} />
+        </Switch>
+      </Fragment>
+    </BrowserRouter>
   );
 }
 
