@@ -1,1 +1,2 @@
 export const GET_LIST_NEWS = "GET_LIST_NEWS";
+export const GET_LIST_HEADING = "GET_LIST_HEADING";

@@ -24,3 +24,26 @@ export const actGetListNews = listNews => {
     listNews
   };
 };
+
+export const actGetTopHeading = () => {
+  return dispatch => {
+    callAPI(
+      "top-headlines?q=news&apiKey=d228956628c24d5dbb82acab0bdf8a28",
+      "GET",
+      null,
+      null
+    )
+      .then(result => {
+        dispatch(actGetListHeading(result.data.articles));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+export const actGetListHeading = listHeading => {
+  return {
+    type: ActionType.GET_LIST_HEADING,
+    listHeading
+  };
+};

@@ -19,7 +19,7 @@ class ListNews extends Component {
   render() {
     return (
       <Fragment>
-        <h2 className="ttl_sec">List News</h2>
+        <h2 className="ttl_sec mb-3">List News</h2>
         <div className="row">{this.renderItem()}</div>
       </Fragment>
     );
