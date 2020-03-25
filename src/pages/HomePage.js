@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListNews from "../containers/ListNews";
 import TopHeadline from "../containers/TopHeadline";
 import KeywordContainer from "../containers/KeywordContainer";
+import UserContainer from "../containers/UserContainer";
 
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
@@ -19,7 +20,7 @@ export default class HomePage extends Component {
               <KeywordContainer />
             </Tab>
             <Tab eventKey="account" title="Account">
-              123
+              <UserContainer />
             </Tab>
           </Tabs>
         </div>

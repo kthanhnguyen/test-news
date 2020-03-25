@@ -47,3 +47,23 @@ export const actGetListHeading = listHeading => {
     listHeading
   };
 };
+
+export const actgetSelection = id => {
+  return dispatch => {
+    callAPI(
+      `everything?q=${id}&apiKey=d228956628c24d5dbb82acab0bdf8a28`,
+      "GET",
+      null,
+      null
+    )
+      .then(result => {
+        dispatch({
+          type: ActionType.GET_LIST_SELECTION,
+          listSelection: result.data.articles
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};

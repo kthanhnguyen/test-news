@@ -14,6 +14,7 @@ class DetailItemNews extends Component {
   };
   render() {
     const { itemDetail } = this.props;
+
     return (
       <div className="detail-news">
         <div className="detail-news__container">

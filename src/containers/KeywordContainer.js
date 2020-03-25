@@ -5,10 +5,10 @@ class KeywordContainer extends Component {
   render() {
     return (
       <div className="key-selection">
-        <Button href="#">Bitcoin</Button>
-        <Button href="#">Apple</Button>
-        <Button href="#">Earthquake</Button>
-        <Button href="#">Animal</Button>
+        <Button href="/selection/bitcoin">Bitcoin</Button>
+        <Button href="/selection/apple">Apple</Button>
+        <Button href="/selection/earthquake">Earthquake</Button>
+        <Button href="/selection/animal">Animal</Button>
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import HomePage from "../pages/HomePage";
 import DetailNewsPage from "../pages/DetailNewsPage";
 import DetailTopHeadlinePage from "../pages/DetailTopHeadlinePage";
+import SelectionPage from "../pages/SelectionPage";
+import DetailSelectionPage from "../pages/DetailSelectionPage";
 
 const routesHome = [
   {
@@ -17,6 +19,16 @@ const routesHome = [
     path: "/top-heading/:name",
     exact: true,
     component: DetailTopHeadlinePage
+  },
+  {
+    path: "/selection/:name",
+    exact: true,
+    component: SelectionPage
+  },
+  {
+    path: "/detail-selection/:id&:name",
+    exact: true,
+    component: DetailSelectionPage
   }
 ];
 
