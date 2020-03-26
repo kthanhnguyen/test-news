@@ -3,13 +3,31 @@ import { connect } from "react-redux";
 import * as action from "../store/action/index";
 
 import SelectionItem from "../components/SelectionItem/SelectionItem";
-
 import HeaderContainer from "../containers/HeaderContainer";
+import Loader from "../components/Loader/Loader";
 
 class SelectionPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showLoader: true
+    };
+  }
   componentDidMount() {
+    this.setTime = setTimeout(() => {
+      this.setState({
+        showLoader: false
+      });
+    }, 2000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.setTime);
+  }
+  componentDidUpdate() {
     let { match } = this.props;
     let id = match.params.name;
+
     this.props.actgetSelectionKeyword(id);
   }
 
@@ -29,7 +47,13 @@ class SelectionPage extends Component {
         <HeaderContainer />
         <div className="container container-home">
           <h2>Selection: {id}</h2>
-          <div className="row">{this._showItem(listSelection, id)}</div>
+          <div className="row">
+            {this.state.showLoader ? (
+              <Loader />
+            ) : (
+              this._showItem(listSelection, id)
+            )}
+          </div>
         </div>
       </div>
     );

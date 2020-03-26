@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { routesHome } from "./routes/routes";
 import HomeTemplate from "./templates/HomeTemplate";
 import PageNotFound from "./pages/PageNotFound";
@@ -21,14 +21,14 @@ const showMenusHome = routes => {
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Fragment>
         <Switch>
           {showMenusHome(routesHome)}
           <Route path="" exact={false} component={PageNotFound} />
         </Switch>
       </Fragment>
-    </BrowserRouter>
+    </Router>
   );
 }
 
