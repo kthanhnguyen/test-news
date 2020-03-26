@@ -18,6 +18,7 @@ const newsReducer = (state = initialState, action) => {
 
     case ActionType.GET_LIST_SELECTION:
       state.listSelection = action.listSelection;
+
       return { ...state };
 
     default:

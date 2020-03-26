@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as action from "../store/action/index";
+import HeaderContainer from "../containers/HeaderContainer";
 
 import DetailItemNews from "../components/DetailItemNews/DetailItemNews";
 
@@ -11,7 +12,7 @@ class DetailNewsPage extends Component {
   _showItem = (listNews, name) => {
     if (listNews.length > 0) {
       let itemDetail = listNews.find(item => {
-        return item.title === name;
+        return item.title === decodeURIComponent(name);
       });
       return <DetailItemNews itemDetail={itemDetail} />;
     }
@@ -20,7 +21,12 @@ class DetailNewsPage extends Component {
     let { listNews, match } = this.props;
     let name = match.params.name;
 
-    return <Fragment>{this._showItem(listNews, name)}</Fragment>;
+    return (
+      <Fragment>
+        <HeaderContainer />
+        <div className="container-home">{this._showItem(listNews, name)}</div>
+      </Fragment>
+    );
   }
 }
 const mapStateToProp = state => {

@@ -67,3 +67,16 @@ export const actgetSelection = id => {
       });
   };
 };
+
+export const actRegister = userData => {
+  return {
+    type: ActionType.ACT_REGISTER_USER,
+    userData
+  };
+};
+
+export const actLogout = () => {
+  return {
+    type: ActionType.ACT_REGISTER_USER
+  };
+};

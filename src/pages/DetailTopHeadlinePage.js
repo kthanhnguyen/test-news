@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as action from "../store/action/index";
 
+import HeaderContainer from "../containers/HeaderContainer";
 import DetailItemNews from "../components/DetailItemNews/DetailItemNews";
 
 class DetailTopHeadlinePage extends Component {
@@ -11,8 +12,9 @@ class DetailTopHeadlinePage extends Component {
   _showItem = (listHeading, name) => {
     if (listHeading.length > 0) {
       let itemDetail = listHeading.find(item => {
-        return item.title === name;
+        return item.title === decodeURIComponent(name);
       });
+
       return <DetailItemNews itemDetail={itemDetail} />;
     }
   };
@@ -20,7 +22,14 @@ class DetailTopHeadlinePage extends Component {
     let { listHeading, match } = this.props;
     let name = match.params.name;
 
-    return <Fragment>{this._showItem(listHeading, name)}</Fragment>;
+    return (
+      <Fragment>
+        <HeaderContainer />
+        <div className="container-home">
+          {this._showItem(listHeading, name)}
+        </div>
+      </Fragment>
+    );
   }
 }
 const mapStateToProp = state => {

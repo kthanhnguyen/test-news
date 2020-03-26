@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../store/action/index";
+
 import SelectionItem from "../components/SelectionItem/SelectionItem";
+
+import HeaderContainer from "../containers/HeaderContainer";
 
 class SelectionPage extends Component {
   componentDidMount() {
@@ -22,9 +25,12 @@ class SelectionPage extends Component {
     let id = match.params.name;
 
     return (
-      <div className="container">
-        <h2>Selection: {id}</h2>
-        <div className="row">{this._showItem(listSelection, id)}</div>
+      <div>
+        <HeaderContainer />
+        <div className="container container-home">
+          <h2>Selection: {id}</h2>
+          <div className="row">{this._showItem(listSelection, id)}</div>
+        </div>
       </div>
     );
   }

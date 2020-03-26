@@ -1,32 +1,65 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
+import * as action from "../store/action/index";
 
-export default class UserContainer extends Component {
+import Register from "../components/Register/Register";
+import LogIn from "../components/LogIn/LogIn";
+import Profile from "../components/Profile/Profile";
+
+class UserContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShow: true
+    };
+  }
+
+  _showReg = () => {
+    this.setState({
+      isShow: true
+    });
+  };
+  _showLog = () => {
+    this.setState({
+      isShow: false
+    });
+  };
+  _showContent = () => {
+    const { isShow } = this.state;
+    if (isShow) {
+      return (
+        <Register
+          showLog={this._showLog}
+          actRegister={this.props.actRegister}
+        />
+      );
+    } else {
+      return <LogIn showReg={this._showReg} />;
+    }
+  };
+  _renderContent = () => {
+    const { userData } = this.props;
+
+    if (userData === "" || userData === undefined) {
+      return this._showContent();
+    } else {
+      return <Profile userData={userData} />;
+    }
+  };
   render() {
-    return (
-      <div>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Username" />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Register
-          </Button>
-        </Form>
-      </div>
-    );
+    return <div>{this._renderContent()}</div>;
   }
 }
+const mapStateToProp = state => {
+  return {
+    userData: state.userReducer.userData
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    actRegister: user => {
+      dispatch(action.actRegister(user));
+    }
+  };
+};
+export default connect(mapStateToProp, mapDispatchToProps)(UserContainer);

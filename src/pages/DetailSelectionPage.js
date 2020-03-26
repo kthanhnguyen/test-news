@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as action from "../store/action/index";
 
+import HeaderContainer from "../containers/HeaderContainer";
 import DetailItemNews from "../components/DetailItemNews/DetailItemNews";
 
 class DetailSelectionPage extends Component {
@@ -23,7 +24,14 @@ class DetailSelectionPage extends Component {
     let { listSelection, match } = this.props;
     let name = match.params.name;
 
-    return <Fragment>{this._showItem(listSelection, name)}</Fragment>;
+    return (
+      <Fragment>
+        <HeaderContainer />
+        <div className="container-home">
+          {this._showItem(listSelection, name)}
+        </div>
+      </Fragment>
+    );
   }
 }
 const mapStateToProp = state => {
